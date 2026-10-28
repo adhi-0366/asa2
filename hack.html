@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#100b24">
+  <meta name="description" content="Join Northstar College's January student hackathon: build a bold idea, collaborate with your campus, and compete for the prize pool.">
+  <title>CampusBuild 2027 | Northstar College Hackathon</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #17233c;
+      background: #f7f8fb;
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      --ink: #17233c;
+      --muted: #748099;
+      --line: #e5e9f1;
+      --blue: #3158d5;
+      --blue-dark: #2446b8;
+      --lime: #ffd879;
+      --navy: #100b24;
+      --violet: #a78bfa;
+      --pink: #ff86bd;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { min-width: 320px; margin: 0; }
+    button, input, select, textarea { font: inherit; }
+    a { color: inherit; }
+
+    .site-header {
+      position: absolute;
+      z-index: 3;
+      top: 0;
+      left: 0;
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px clamp(22px, 7vw, 104px);
+      color: #fff;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      color: inherit;
+      font-size: 14px;
+      font-weight: 720;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 38px;
+      height: 38px;
+      place-items: center;
+      border: 1px solid rgb(255 255 255 / 27%);
+      border-radius: 12px;
+      background: rgb(255 255 255 / 10%);
+      font-size: 14px;
+      letter-spacing: -0.05em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .nav-links a { color: #d0d5e5; text-decoration: none; }
+    .nav-links a:hover { color: #fff; }
+    .nav-links .nav-cta { color: var(--lime); }
+
+    .hero {
+      position: relative;
+      display: grid;
+      min-height: 690px;
+      grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr);
+      align-items: center;
+      overflow: hidden;
+      gap: 25px;
+      padding: 126px clamp(22px, 8vw, 122px) 76px;
+      color: #fff;
+      background:
+        linear-gradient(rgb(255 255 255 / 3%) 1px, transparent 1px),
+        linear-gradient(90deg, rgb(255 255 255 / 3%) 1px, transparent 1px),
+        radial-gradient(ellipse at 82% 28%, rgb(91 117 227 / 27%), transparent 29%),
+        radial-gradient(ellipse at 18% 110%, rgb(42 68 135 / 45%), transparent 48%),
+        var(--navy);
+      background-size: 44px 44px, 44px 44px, auto, auto, auto;
+    }
+
+    .hero::before, .hero::after {
+      position: absolute;
+      right: -85px;
+      top: 120px;
+      width: 420px;
+      height: 420px;
+      border: 1px solid rgb(255 255 255 / 9%);
+      border-radius: 50%;
+      content: "";
+      pointer-events: none;
+    }
+
+    .hero::after {
+      right: -5px;
+      top: 200px;
+      width: 260px;
+      height: 260px;
+      border-color: rgb(215 255 112 / 18%);
+    }
+
+    .hero-content { position: relative; z-index: 1; width: min(100%, 710px); }
+    .event-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 20px;
+      color: var(--lime);
+      font-size: 10px;
+      font-weight: 750;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+
+    .event-label::before {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--lime);
+      box-shadow: 0 0 15px rgb(215 255 112 / 75%);
+      content: "";
+    }
+
+    h1 {
+      max-width: 720px;
+      margin: 0;
+      font-size: clamp(52px, 7.7vw, 92px);
+      font-weight: 760;
+      letter-spacing: -.075em;
+      line-height: .96;
+    }
+
+    h1 span {
+      color: transparent;
+      background: linear-gradient(100deg, var(--lime) 8%, #aaf3e3 48%, #9db4ff 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
+
+    .hero-stage {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      min-height: 360px;
+      place-items: center;
+      isolation: isolate;
+    }
+
+    .orbit {
+      position: absolute;
+      width: min(32vw, 340px);
+      aspect-ratio: 1;
+      border: 1px solid rgb(255 255 255 / 12%);
+      border-radius: 50%;
+      transform: rotate(-24deg) scaleY(.65);
+      box-shadow: 0 0 60px rgb(75 90 255 / 11%), inset 0 0 40px rgb(75 90 255 / 9%);
+    }
+
+    .orbit::before, .orbit::after {
+      position: absolute;
+      inset: 12%;
+      border: 1px dashed rgb(215 255 112 / 24%);
+      border-radius: 50%;
+      content: "";
+    }
+
+    .orbit::after {
+      inset: 25%;
+      border-style: solid;
+      border-color: rgb(145 120 255 / 34%);
+      transform: rotate(65deg) scaleX(1.35);
+    }
+
+    .idea-card {
+      position: relative;
+      width: min(100%, 310px);
+      padding: 22px;
+      border: 1px solid rgb(255 255 255 / 22%);
+      border-radius: 18px;
+      background: linear-gradient(145deg, rgb(40 53 92 / 88%), rgb(19 26 49 / 92%));
+      box-shadow: 0 28px 80px rgb(0 0 0 / 35%), inset 0 1px rgb(255 255 255 / 12%);
+      transform: rotate(4deg);
+      backdrop-filter: blur(14px);
+    }
+
+    .idea-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #aeb8d3;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    .live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--lime);
+      letter-spacing: .08em;
+    }
+
+    .live-badge::before {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--lime);
+      box-shadow: 0 0 10px var(--lime);
+      content: "";
+    }
+
+    .idea-art {
+      position: relative;
+      display: grid;
+      height: 166px;
+      margin: 20px 0;
+      overflow: hidden;
+      place-items: center;
+      border: 1px solid rgb(255 255 255 / 10%);
+      border-radius: 12px;
+      background:
+        radial-gradient(circle at 50% 50%, rgb(215 255 112 / 23%), transparent 35%),
+        linear-gradient(135deg, rgb(141 120 255 / 24%), rgb(49 88 213 / 8%));
+    }
+
+    .idea-art::before, .idea-art::after {
+      position: absolute;
+      width: 115px;
+      height: 115px;
+      border: 1px solid rgb(215 255 112 / 55%);
+      border-radius: 28px;
+      content: "";
+      transform: rotate(45deg);
+    }
+
+    .idea-art::after {
+      width: 76px;
+      height: 76px;
+      border-color: rgb(255 255 255 / 48%);
+      transform: rotate(15deg);
+    }
+
+    .idea-symbol {
+      position: relative;
+      z-index: 1;
+      color: var(--lime);
+      font-size: 39px;
+      font-weight: 300;
+      text-shadow: 0 0 30px rgb(215 255 112 / 75%);
+    }
+
+    .idea-title { margin: 0; color: #fff; font-size: 17px; font-weight: 700; letter-spacing: -.03em; }
+    .idea-caption { margin: 7px 0 0; color: #abb5d0; font-size: 10px; }
+    .idea-progress { height: 4px; margin-top: 17px; overflow: hidden; border-radius: 4px; background: rgb(255 255 255 / 12%); }
+    .idea-progress span { display: block; width: 68%; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--lime), #80e6d4); }
+
+    .floating-chip {
+      position: absolute;
+      z-index: 2;
+      padding: 10px 13px;
+      border: 1px solid rgb(255 255 255 / 19%);
+      border-radius: 10px;
+      background: rgb(24 33 60 / 88%);
+      box-shadow: 0 12px 30px rgb(0 0 0 / 25%);
+      color: #e7eaff;
+      font-size: 10px;
+      font-weight: 650;
+      backdrop-filter: blur(10px);
+    }
+
+    .chip-top { top: 20px; right: 2%; transform: rotate(7deg); }
+    .chip-bottom { bottom: 17px; left: 2%; color: var(--lime); transform: rotate(-5deg); }
+    .chip-top { animation: float-chip 5s ease-in-out infinite; }
+    .chip-bottom { animation: float-chip 6s ease-in-out infinite reverse; }
+
+    @keyframes float-chip {
+      0%, 100% { translate: 0 0; }
+      50% { translate: 0 -7px; }
+    }
+
+    .stats {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      margin: -1px clamp(22px, 7vw, 104px) 0;
+      padding: 0 24px;
+      border: 1px solid #252f4b;
+      border-radius: 14px;
+      background: #171f37;
+      box-shadow: 0 20px 55px rgb(15 23 44 / 13%);
+      transform: translateY(-24px);
+    }
+
+    .stat {
+      padding: 21px 20px;
+      border-right: 1px solid rgb(255 255 255 / 10%);
+    }
+
+    .stat strong { color: #fff; font-size: 20px; letter-spacing: -.04em; }
+    .stat:nth-child(4) strong { color: var(--lime); }
+    .stat span { color: #aab4ce; }
+
+    .section {
+      position: relative;
+      padding: 82px clamp(22px, 10vw, 150px);
+    }
+
+    .section-heading { position: relative; }
+    .section-heading::before {
+      display: block;
+      width: 37px;
+      height: 3px;
+      margin-bottom: 22px;
+      border-radius: 3px;
+      background: linear-gradient(90deg, var(--blue), var(--violet));
+      content: "";
+    }
+
+    .register-section .section-heading::before { background: linear-gradient(90deg, var(--lime), #8ae6d5); }
+
+    .detail-card, .schedule-card, .project-card, .register-card {
+      border-radius: 16px;
+      box-shadow: 0 14px 40px rgb(28 43 78 / 5%);
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    .detail-card:hover, .schedule-card:hover, .project-card:hover, .prize-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 45px rgb(28 43 78 / 10%);
+    }
+
+    .track {
+      border-radius: 10px;
+      background: linear-gradient(135deg, #f8f9fd, #f0f3ff);
+    }
+
+    .prizes-section {
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 100% 10%, rgb(141 120 255 / 11%), transparent 35%),
+        radial-gradient(ellipse at 0% 90%, rgb(49 88 213 / 7%), transparent 40%),
+        #f0f3fb;
+    }
+
+    .prize-card {
+      position: relative;
+      min-height: 185px;
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 0 9px 24px rgb(28 43 78 / 5%);
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    .prize-card:first-child {
+      border-color: #d6dcff;
+      background: linear-gradient(145deg, #fff 50%, #f0efff);
+    }
+
+    .prize-card:first-child::after {
+      position: absolute;
+      right: -28px;
+      bottom: -50px;
+      width: 140px;
+      height: 140px;
+      border: 1px solid rgb(141 120 255 / 20%);
+      border-radius: 50%;
+      box-shadow: 0 0 0 18px rgb(141 120 255 / 5%), 0 0 0 38px rgb(141 120 255 / 4%);
+      content: "";
+    }
+
+    .prize-card:first-child .prize-amount { color: var(--blue); }
+
+    .register-section {
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 100% 0%, rgb(81 102 201 / 25%), transparent 38%),
+        var(--navy);
+    }
+
+    .register-card {
+      border-color: rgb(255 255 255 / 12%);
+      box-shadow: 0 25px 70px rgb(0 0 0 / 25%);
+    }
+
+    @media (max-width: 1000px) {
+      .hero { grid-template-columns: minmax(0, 1.1fr) minmax(240px, .8fr); padding-right: 6vw; padding-left: 6vw; }
+      .idea-card { width: min(100%, 280px); padding: 18px; }
+      .stats { margin-right: 5vw; margin-left: 5vw; }
+    }
+    .hero-description {
+      max-width: 530px;
+      margin: 24px 0 28px;
+      color: #c4cce0;
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
+    .button {
+      display: inline-flex;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
+      padding: 0 20px;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      background: var(--lime);
+      color: #17233c;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 750;
+      text-decoration: none;
+      transition: background 150ms ease, transform 150ms ease;
+    }
+
+    .button:hover { transform: translateY(-1px); background: #e2ff99; }
+    .button:focus-visible, a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+      outline: 3px solid #7996ff;
+      outline-offset: 3px;
+    }
+
+    .hero-date { color: #d0d5e5; font-size: 12px; }
+    .sample-tag {
+      display: inline-block;
+      margin-left: 7px;
+      padding: 4px 7px;
+      border: 1px solid rgb(215 255 112 / 24%);
+      border-radius: 5px;
+      color: var(--lime);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      vertical-align: 2px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      padding: 0 clamp(22px, 10vw, 150px);
+      background: #fff;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .stat {
+      padding: 25px 20px;
+      border-right: 1px solid var(--line);
+    }
+
+    .stat:first-child { padding-left: 0; }
+    .stat:last-child { border-right: 0; }
+    .stat strong { display: block; color: var(--ink); font-size: 20px; letter-spacing: -.04em; }
+    .stat span { display: block; margin-top: 5px; color: var(--muted); font-size: 11px; }
+
+    .section {
+      padding: 88px clamp(22px, 10vw, 150px);
+    }
+
+    .section-heading { max-width: 620px; margin-bottom: 34px; }
+    .kicker {
+      margin: 0 0 12px;
+      color: var(--blue);
+      font-size: 10px;
+      font-weight: 750;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0;
+      color: var(--ink);
+      font-size: clamp(30px, 4vw, 44px);
+      font-weight: 650;
+      letter-spacing: -.06em;
+      line-height: 1.1;
+    }
+
+    .section-heading > p:last-child {
+      margin: 13px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.75;
+    }
+
+    .details-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 18px;
+    }
+
+    .detail-card, .schedule-card, .project-card, .register-card {
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      background: #fff;
+    }
+
+    .detail-card { padding: 26px; }
+    .detail-card h3, .schedule-card h3, .project-card h3 {
+      margin: 0 0 12px;
+      color: var(--ink);
+      font-size: 16px;
+      letter-spacing: -.025em;
+    }
+
+    .detail-card > p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.8; }
+    .track-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 20px; }
+    .track {
+      padding: 12px;
+      border: 1px solid #ebeff8;
+      border-radius: 8px;
+      background: #f8f9fd;
+      color: #34415b;
+      font-size: 12px;
+      font-weight: 620;
+    }
+
+    .schedule-card { padding: 26px; }
+    .schedule-row {
+      display: grid;
+      grid-template-columns: 74px 1fr;
+      gap: 13px;
+      padding: 14px 0;
+      border-bottom: 1px solid #edf0f5;
+    }
+    .schedule-row:last-child { border-bottom: 0; padding-bottom: 0; }
+    .schedule-time { color: var(--blue); font-size: 11px; font-weight: 720; }
+    .schedule-row strong { display: block; color: #34415b; font-size: 12px; }
+    .schedule-row span:last-child { display: block; margin-top: 4px; color: var(--muted); font-size: 11px; line-height: 1.5; }
+
+    .prizes-section { background: #f0f3fb; }
+    .prize-total {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-top: 20px;
+      color: var(--ink);
+    }
+    .prize-total strong { font-size: clamp(34px, 5vw, 52px); letter-spacing: -.07em; }
+    .prize-total span { color: var(--muted); font-size: 12px; }
+
+    .prize-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 25px; }
+    .prize-card {
+      min-height: 170px;
+      padding: 22px;
+      border: 1px solid #e3e8f3;
+      border-radius: 12px;
+      background: #fff;
+    }
+    .prize-rank { color: var(--blue); font-size: 10px; font-weight: 750; letter-spacing: .12em; text-transform: uppercase; }
+    .prize-amount { display: block; margin: 23px 0 7px; color: var(--ink); font-size: 28px; font-weight: 700; letter-spacing: -.06em; }
+    .prize-card p { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.6; }
+    .sample-note { margin: 15px 0 0; color: #7a849a; font-size: 11px; line-height: 1.7; }
+
+    .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .project-card { overflow: hidden; }
+    .project-visual {
+      position: relative;
+      height: 205px;
+      overflow: hidden;
+      background: #172955;
+      isolation: isolate;
+    }
+
+    .project-visual::before {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background-image: linear-gradient(rgb(255 255 255 / 4%) 1px, transparent 1px), linear-gradient(90deg, rgb(255 255 255 / 4%) 1px, transparent 1px);
+      background-size: 22px 22px;
+      content: "";
+    }
+
+    .project-visual svg { display: block; width: 100%; height: 100%; }
+    .project-card:nth-child(2) .project-visual { background: #123b43; }
+    .project-card:nth-child(3) .project-visual { background: #3b2948; }
+    .project-info { padding: 22px; }
+    .project-info { padding: 19px; }
+    .project-rank { display: inline-block; margin-bottom: 9px; color: var(--blue); font-size: 9px; font-weight: 750; letter-spacing: .12em; text-transform: uppercase; }
+    .project-card h3 { margin-bottom: 7px; }
+    .project-card p { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.7; }
+    .team-name { display: block; margin-top: 13px; color: #536079; font-size: 10px; font-weight: 650; }
+
+    .register-section { background: var(--navy); }
+    .register-section h2 { color: #fff; }
+    .register-section .section-heading > p:last-child { color: #b7c0d5; }
+    .register-section .kicker { color: var(--lime); }
+    .register-layout { display: grid; grid-template-columns: .75fr 1.25fr; align-items: start; gap: 48px; }
+    .register-aside { padding-top: 10px; color: #c4cce0; font-size: 13px; line-height: 1.8; }
+    .register-aside strong { color: #fff; }
+    .register-aside p { margin: 0 0 18px; }
+    .register-card { padding: 27px; color: var(--ink); }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-field { display: grid; gap: 7px; }
+    .form-field.full { grid-column: 1 / -1; }
+    .form-field label { color: #34415b; font-size: 11px; font-weight: 700; }
+    .form-field input, .form-field select, .form-field textarea {
+      width: 100%;
+      min-height: 43px;
+      padding: 10px 12px;
+      border: 1px solid #dfe3ec;
+      border-radius: 7px;
+      outline: none;
+      background: #fff;
+      color: var(--ink);
+      font-size: 12px;
+    }
+    .form-field input:focus, .form-field select:focus, .form-field textarea:focus {
+      border-color: #6b86e8;
+      box-shadow: 0 0 0 3px rgb(49 88 213 / 12%);
+    }
+    .form-field textarea { min-height: 86px; resize: vertical; }
+    .consent {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      margin: 17px 0;
+      color: #5e6a80;
+      font-size: 10px;
+      line-height: 1.6;
+    }
+    .consent input { margin: 2px 0 0; accent-color: var(--blue); }
+    .register-card .button { width: 100%; border: 0; }
+    .form-status { display: none; margin: 13px 0 0; padding: 11px; border-radius: 7px; font-size: 11px; line-height: 1.6; }
+    .form-status.visible { display: block; }
+    .form-status.success { background: #eefaf3; color: #21613d; }
+    .form-status.error { background: #fff3ef; color: #943d2c; }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 22px clamp(22px, 10vw, 150px);
+      background: #0b1020;
+      color: #aab3c9;
+      font-size: 10px;
+    }
+    footer a { color: #d7ff70; text-decoration: none; }
+
+    @media (max-width: 800px) {
+      .hero { min-height: 620px; padding-right: 5vw; padding-left: 5vw; }
+      .hero-stage { min-height: 300px; }
+      .idea-card { width: min(100%, 250px); padding: 16px; }
+      .idea-art { height: 130px; }
+      .chip-top { right: -3%; }
+      .chip-bottom { left: -3%; }
+      .stats { margin-right: 22px; margin-left: 22px; padding: 0 12px; }
+      .stat { padding-right: 12px; padding-left: 12px; }
+      .details-grid, .register-layout { grid-template-columns: 1fr; gap: 18px; }
+      .register-layout { gap: 22px; }
+      .projects-grid { grid-template-columns: 1fr 1fr; }
+      .project-card:last-child { grid-column: 1 / -1; }
+      .section { padding-top: 68px; padding-bottom: 68px; }
+    }
+
+    @media (max-width: 560px) {
+      .site-header { padding: 17px 20px; }
+      .nav-links { gap: 14px; }
+      .nav-links a:not(.nav-cta) { display: none; }
+      .hero { min-height: 680px; grid-template-columns: 1fr; gap: 0; padding: 110px 22px 40px; }
+      .hero-content { align-self: end; }
+      .hero-stage { min-height: 230px; margin-top: 5px; }
+      .orbit { width: 230px; }
+      .idea-card { width: min(72%, 250px); padding: 14px; transform: rotate(2deg); }
+      .idea-art { height: 95px; margin: 12px 0; }
+      .idea-art::before { width: 75px; height: 75px; }
+      .idea-art::after { width: 50px; height: 50px; }
+      .idea-symbol { font-size: 30px; }
+      .idea-title { font-size: 14px; }
+      .idea-progress { margin-top: 10px; }
+      .chip-top { top: 2px; right: 0; }
+      .chip-bottom { bottom: 0; left: 0; }
+      h1 { font-size: clamp(53px, 15vw, 76px); }
+      .hero-description { font-size: 14px; }
+      .hero-date { width: 100%; }
+      .stats { grid-template-columns: 1fr 1fr; padding: 0 12px; }
+      .stat { border-bottom: 1px solid #eadfca; }
+      .stat:nth-child(2) { border-right: 0; }
+      .stat:nth-child(3), .stat:nth-child(4) { border-bottom: 0; }
+      .stat:nth-child(3) { padding-left: 12px; }
+      .section { padding: 58px 22px; }
+      .track-list, .prize-grid, .projects-grid, .form-grid { grid-template-columns: 1fr; }
+      .project-card:last-child, .form-field.full { grid-column: auto; }
+      .form-field.full { grid-column: 1; }
+      .register-card { padding: 20px; }
+      footer { flex-direction: column; padding: 20px 22px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+    }
+
+    .hero {
+      background:
+        radial-gradient(ellipse at 78% 20%, rgb(124 73 190 / 30%), transparent 32%),
+        radial-gradient(ellipse at 18% 95%, rgb(65 45 131 / 48%), transparent 48%),
+        linear-gradient(145deg, #100b24 0%, #17102f 55%, #100b24 100%);
+    }
+
+    .hero::before { border-color: rgb(255 216 121 / 19%); }
+    .hero::after { border-color: rgb(255 134 189 / 24%); }
+    .nav-links .nav-cta { color: var(--lime); }
+    .stats {
+      border-color: #ead9b5;
+      background: linear-gradient(110deg, #fffdf7, #fff5df 58%, #fffaf0);
+      box-shadow: 0 18px 48px rgb(68 47 28 / 10%);
+    }
+    .stats .stat { border-color: #eadfca; }
+    .stats .stat strong { color: #382b3e; }
+    .stats .stat span { color: #786d7d; }
+    .stats .stat:nth-child(4) strong { color: #a56a13; }
+    .prizes-section {
+      background:
+        radial-gradient(ellipse at 100% 10%, rgb(167 139 250 / 12%), transparent 35%),
+        radial-gradient(ellipse at 0% 90%, rgb(255 216 121 / 9%), transparent 40%),
+        #f7f3fb;
+    }
+    .prize-card:first-child { border-color: #f0dfb8; background: linear-gradient(145deg, #fff 50%, #fff8e9); }
+    .prize-card:first-child .prize-amount { color: #a56a13; }
+    .prize-card:first-child::after {
+      border-color: rgb(255 216 121 / 38%);
+      box-shadow: 0 0 0 18px rgb(255 216 121 / 8%), 0 0 0 38px rgb(255 216 121 / 5%);
+    }
+    .register-section {
+      background:
+        radial-gradient(ellipse at 100% 0%, rgb(124 73 190 / 28%), transparent 38%),
+        var(--navy);
+    }
+    .firework {
+      position: absolute;
+      z-index: 0;
+      width: 150px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: repeating-conic-gradient(from 0deg, transparent 0deg 7deg, rgb(255 216 121 / 90%) 8deg 9deg, transparent 10deg 15deg);
+      mask: radial-gradient(circle, transparent 0 10%, #000 12% 14%, transparent 16% 31%, #000 33% 35%, transparent 37% 100%);
+      -webkit-mask: radial-gradient(circle, transparent 0 10%, #000 12% 14%, transparent 16% 31%, #000 33% 35%, transparent 37% 100%);
+      opacity: .7;
+      animation: firework-bloom 4.5s ease-in-out infinite;
+      pointer-events: none;
+    }
+    .firework::after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--lime);
+      box-shadow: 0 0 20px 5px rgb(255 216 121 / 70%);
+      content: "";
+      transform: translate(-50%, -50%);
+    }
+    .firework-one { top: 11%; right: 34%; }
+    .firework-two { top: 24%; right: 3%; width: 112px; filter: hue-rotate(95deg); animation-delay: 1.4s; }
+    .firework-three { bottom: 8%; right: 31%; width: 92px; filter: hue-rotate(210deg); animation-delay: 2.8s; }
+    @keyframes firework-bloom {
+      0%, 100% { opacity: .28; transform: scale(.82); }
+      50% { opacity: .82; transform: scale(1.06); }
+    }
+
+    @media (max-width: 800px) {
+      .firework-one { top: 15%; right: 32%; }
+      .firework-two { top: 30%; right: 3%; }
+    }
+
+    @media (max-width: 560px) {
+      .firework-one { top: 45%; right: 3%; width: 95px; }
+      .firework-two { top: 57%; right: 70%; width: 72px; }
+      .firework-three { bottom: 2%; right: 13%; width: 72px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Northstar College CampusBuild home">
+      <span class="brand-mark" aria-hidden="true">N</span>
+      <span>Northstar College <span style="font-weight:450;color:#c4cce0">/ CampusBuild</span></span>
+    </a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#about">The event</a>
+      <a href="#projects">Projects</a>
+      <a class="nav-cta" href="#register">Register <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="firework firework-one" aria-hidden="true"></div>
+      <div class="firework firework-two" aria-hidden="true"></div>
+      <div class="firework firework-three" aria-hidden="true"></div>
+      <div class="hero-content">
+        <p class="event-label">New year kickoff · Northstar College hackathon</p>
+        <h1 id="hero-title">New year.<br><span>New big ideas.</span></h1>
+        <p class="hero-description">Start the year with a spark. Team up, build something useful for campus, and turn your next big idea into something real.</p>
+        <div class="hero-actions">
+          <a class="button" href="#register">Save your spot <span aria-hidden="true">&nbsp;↗</span></a>
+          <span class="hero-date">January 16–17, 2027 <span class="sample-tag">SAMPLE DATE</span></span>
+        </div>
+      </div>
+      <div class="hero-stage" aria-hidden="true">
+        <div class="orbit"></div>
+        <div class="floating-chip chip-top">✦ Ideas into impact</div>
+        <div class="idea-card">
+          <div class="idea-card-top"><span>CampusBuild / 001</span><span class="live-badge">Midnight mode</span></div>
+          <div class="idea-art"><span class="idea-symbol">✳</span></div>
+          <p class="idea-title">Your next big idea.</p>
+          <p class="idea-caption">Sketch it. Ship it. Share it.</p>
+          <div class="idea-progress"><span></span></div>
+        </div>
+        <div class="floating-chip chip-bottom">✦ &nbsp; New year. New build.</div>
+      </div>
+    </section>
+
+    <section class="stats" aria-label="Event highlights">
+      <div class="stat"><strong>24 hours</strong><span>Build, test, and present</span></div>
+      <div class="stat"><strong>2–4 people</strong><span>Recommended team size</span></div>
+      <div class="stat"><strong>4 tracks</strong><span>Choose a campus challenge</span></div>
+      <div class="stat"><strong>₹75,000</strong><span>Sample total prize pool</span></div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="section-heading">
+        <p class="kicker">The challenge</p>
+        <h2>Build for the campus we share.</h2>
+        <p>CampusBuild is a student-led internal hackathon. Form a team, choose a real problem, and turn your idea into a working prototype with help from mentors.</p>
+      </div>
+      <div class="details-grid">
+        <article class="detail-card">
+          <h3>What you’ll do</h3>
+          <p>Over one focused 24-hour build, teams will define a problem, develop a prototype, and pitch it to a panel of faculty and industry mentors. All departments and experience levels are welcome; beginners can join a team and learn as they go.</p>
+          <div class="track-list" aria-label="Hackathon tracks">
+            <div class="track">✦ Student life &amp; wellbeing</div>
+            <div class="track">✦ Learning &amp; accessibility</div>
+            <div class="track">✦ Sustainability on campus</div>
+            <div class="track">✦ Open innovation</div>
+          </div>
+        </article>
+        <article class="schedule-card">
+          <h3>Sample event schedule</h3>
+          <div class="schedule-row">
+            <span class="schedule-time">DAY 1 · 8 AM</span>
+            <span><strong>Kickoff &amp; team check-in</strong><span>Opening, challenge briefing, and mentor introductions</span></span>
+          </div>
+          <div class="schedule-row">
+            <span class="schedule-time">DAY 1 · 9 AM</span>
+            <span><strong>Build starts</strong><span>Workshops, mentor office hours, and prototyping</span></span>
+          </div>
+          <div class="schedule-row">
+            <span class="schedule-time">DAY 2 · 9 AM</span>
+            <span><strong>Submit &amp; showcase</strong><span>Demo your prototype and share what you learned</span></span>
+          </div>
+          <div class="schedule-row">
+            <span class="schedule-time">DAY 2 · 1 PM</span>
+            <span><strong>Judging &amp; awards</strong><span>Final pitches, prizes, and closing celebration</span></span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section prizes-section" id="prizes">
+      <div class="section-heading">
+        <p class="kicker">Big ideas, well rewarded</p>
+        <h2>A little friendly competition.</h2>
+        <p>Celebrate the teams turning thoughtful ideas into useful prototypes.</p>
+        <div class="prize-total"><strong>₹75,000</strong><span>sample prize pool</span></div>
+      </div>
+      <div class="prize-grid">
+        <article class="prize-card">
+          <span class="prize-rank">01 · First place</span>
+          <strong class="prize-amount">₹35,000</strong>
+          <p>For the strongest overall project and presentation.</p>
+        </article>
+        <article class="prize-card">
+          <span class="prize-rank">02 · Second place</span>
+          <strong class="prize-amount">₹25,000</strong>
+          <p>For a thoughtful solution with a compelling prototype.</p>
+        </article>
+        <article class="prize-card">
+          <span class="prize-rank">03 · Third place</span>
+          <strong class="prize-amount">₹15,000</strong>
+          <p>For a creative idea with potential to make an impact.</p>
+        </article>
+      </div>
+      <p class="sample-note">Prize amounts and event details are sample content for this website demo. Confirm the official prize pool and terms with event organizers before publishing.</p>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="section-heading">
+        <p class="kicker">Past-project showcase · sample</p>
+        <h2>Ideas worth building on.</h2>
+        <p>Example winning projects to show how student teams could turn campus challenges into practical prototypes.</p>
+      </div>
+      <div class="projects-grid">
+        <article class="project-card">
+          <div class="project-visual" aria-hidden="true">
+            <svg viewBox="0 0 360 205" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="pathway-map" x1="0" x2="1" y1="0" y2="1">
+                  <stop stop-color="#f8fbff"/>
+                  <stop offset="1" stop-color="#dce8ff"/>
+                </linearGradient>
+                <filter id="pathway-shadow" x="-30%" y="-30%" width="160%" height="170%">
+                  <feDropShadow dx="0" dy="8" stdDeviation="9" flood-color="#080f24" flood-opacity=".28"/>
+                </filter>
+              </defs>
+              <g filter="url(#pathway-shadow)">
+                <rect x="34" y="24" width="292" height="157" rx="14" fill="url(#pathway-map)"/>
+                <rect x="47" y="37" width="110" height="130" rx="9" fill="#fff"/>
+                <circle cx="62" cy="52" r="4" fill="#dbe4f3"/>
+                <path d="M75 52h57M57 69h89" stroke="#e6ebf4" stroke-width="4" stroke-linecap="round"/>
+                <rect x="57" y="86" width="91" height="34" rx="7" fill="#eef3ff"/>
+                <circle cx="72" cy="103" r="7" fill="#3158d5"/>
+                <path d="M69 103h6m-3-3v6" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M85 98h48M85 106h37" stroke="#9ba9c4" stroke-width="3" stroke-linecap="round"/>
+                <rect x="57" y="129" width="91" height="26" rx="6" fill="#f6f8fc"/>
+                <path d="M67 142h30m8 0h31" stroke="#c6cede" stroke-width="3" stroke-linecap="round"/>
+                <path d="M177 38h128v128H177z" fill="#e7f0e9"/>
+                <path d="M177 79h128M177 121h128M216 38v128M262 38v128" stroke="#fff" stroke-width="9"/>
+                <path d="M177 100h39l23-21h22l22 21h22v42h-44l-22-21h-24l-19 21h-19" fill="none" stroke="#3158d5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1 8"/>
+                <path d="M246 74c-7 0-12 5-12 12 0 9 12 21 12 21s12-12 12-21c0-7-5-12-12-12Z" fill="#ff6fbe"/>
+                <circle cx="246" cy="86" r="4" fill="#fff"/>
+                <circle cx="201" cy="143" r="5" fill="#d7ff70" stroke="#fff" stroke-width="2"/>
+                <rect x="265" y="43" width="31" height="18" rx="6" fill="#fff"/>
+                <path d="M273 52h15" stroke="#8ba0bf" stroke-width="2" stroke-linecap="round"/>
+              </g>
+            </svg>
+          </div>
+          <div class="project-info">
+            <span class="project-rank">First place · example</span>
+            <h3>Pathway</h3>
+            <p>A campus accessibility map prototype that helps students find step-free routes and accessible facilities.</p>
+            <span class="team-name">Team: Open Doors · Sample showcase</span>
+          </div>
+        </article>
+        <article class="project-card">
+          <div class="project-visual" aria-hidden="true">
+            <svg viewBox="0 0 360 205" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="study-card" x1="0" x2="1" y1="0" y2="1">
+                  <stop stop-color="#e7fff5"/>
+                  <stop offset="1" stop-color="#c6f3e5"/>
+                </linearGradient>
+                <filter id="study-shadow" x="-30%" y="-30%" width="160%" height="170%">
+                  <feDropShadow dx="0" dy="8" stdDeviation="9" flood-color="#071d22" flood-opacity=".3"/>
+                </filter>
+              </defs>
+              <path d="M81 63 157 93m43-4 63-31M91 145l66-35m53 9 54 28M180 68v24m0 29v23" stroke="#87d8c0" stroke-width="2" stroke-dasharray="4 5"/>
+              <g filter="url(#study-shadow)">
+                <rect x="128" y="35" width="104" height="137" rx="16" fill="url(#study-card)"/>
+                <rect x="140" y="49" width="80" height="68" rx="10" fill="#fff"/>
+                <path d="M180 65v33m-16-16h32" stroke="#2a8878" stroke-width="3" stroke-linecap="round"/>
+                <circle cx="180" cy="82" r="17" fill="none" stroke="#a8e8d2" stroke-width="2"/>
+                <rect x="144" y="128" width="72" height="6" rx="3" fill="#8fcdb8"/>
+                <rect x="155" y="140" width="50" height="5" rx="2.5" fill="#bddfd3"/>
+                <circle cx="80" cy="57" r="24" fill="#f8c5a5"/>
+                <path d="M56 59c0-17 10-28 25-28 13 0 22 10 22 24-9-3-17-10-19-17-5 8-15 13-28 15Z" fill="#4a373d"/>
+                <path d="M43 101c5-18 17-26 37-26s33 8 38 26v14H43Z" fill="#ff9c79"/>
+                <circle cx="280" cy="57" r="23" fill="#edb98e"/>
+                <path d="M257 57c2-17 10-27 25-27 14 0 22 11 22 27-9-3-17-9-20-17-5 8-14 13-27 17Z" fill="#263643"/>
+                <path d="M246 101c6-18 17-26 35-26 19 0 31 8 36 26v14h-71Z" fill="#8e7bf0"/>
+                <circle cx="88" cy="146" r="21" fill="#b9d1ff"/>
+                <path d="M66 144c1-14 8-23 21-23 14 0 22 10 22 24-9-3-15-9-19-15-5 7-13 12-24 14Z" fill="#353c69"/>
+                <path d="M58 179c4-17 14-24 30-24s26 7 30 24" fill="#65b7d4"/>
+                <circle cx="274" cy="148" r="21" fill="#e8c1d9"/>
+                <path d="M252 146c0-15 9-24 22-24 13 0 22 10 22 24-9-2-16-8-20-15-4 8-13 13-24 15Z" fill="#55345b"/>
+                <path d="M244 181c4-17 14-24 30-24s26 7 30 24" fill="#e785ad"/>
+                <circle cx="180" cy="20" r="5" fill="#d7ff70"/>
+                <circle cx="180" cy="20" r="9" fill="none" stroke="#d7ff70" stroke-opacity=".4"/>
+              </g>
+            </svg>
+          </div>
+          <div class="project-info">
+            <span class="project-rank">Second place · example</span>
+            <h3>StudyCircle</h3>
+            <p>A peer study-match concept connecting students by subject, availability, and preferred learning style.</p>
+            <span class="team-name">Team: Brainwave · Sample showcase</span>
+          </div>
+        </article>
+        <article class="project-card">
+          <div class="project-visual" aria-hidden="true">
+            <svg viewBox="0 0 360 205" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="green-screen" x1="0" x2="1" y1="0" y2="1">
+                  <stop stop-color="#fffaf0"/>
+                  <stop offset="1" stop-color="#f1dfca"/>
+                </linearGradient>
+                <filter id="green-shadow" x="-30%" y="-30%" width="160%" height="170%">
+                  <feDropShadow dx="0" dy="8" stdDeviation="9" flood-color="#21142b" flood-opacity=".28"/>
+                </filter>
+              </defs>
+              <g filter="url(#green-shadow)">
+                <rect x="38" y="28" width="284" height="150" rx="14" fill="url(#green-screen)"/>
+                <rect x="51" y="41" width="258" height="25" rx="7" fill="#fff"/>
+                <circle cx="64" cy="53" r="4" fill="#fc8d75"/>
+                <circle cx="76" cy="53" r="4" fill="#f5c45d"/>
+                <circle cx="88" cy="53" r="4" fill="#71c99b"/>
+                <rect x="103" y="49" width="80" height="8" rx="4" fill="#ece8e2"/>
+                <rect x="57" y="78" width="112" height="85" rx="9" fill="#fff"/>
+                <rect x="69" y="90" width="42" height="54" rx="4" fill="#d88657"/>
+                <path d="M73 95h34M73 102h34" stroke="#f8d5a5" stroke-width="3" stroke-linecap="round"/>
+                <path d="M73 133c9-7 20-7 34 0" fill="none" stroke="#9f583f" stroke-width="3"/>
+                <rect x="118" y="90" width="40" height="54" rx="4" fill="#789673"/>
+                <path d="M138 121c-13-3-15-15-14-19 10 0 16 6 14 19Zm0 4c0-11 5-17 14-19 2 11-2 17-14 19Z" fill="#d7ff70"/>
+                <path d="M138 121v11" stroke="#fff" stroke-width="2"/>
+                <rect x="180" y="78" width="113" height="39" rx="8" fill="#fff"/>
+                <circle cx="199" cy="97" r="10" fill="#fbe8d6"/>
+                <path d="M194 97h10m-5-5v10" stroke="#bc7557" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M217 92h59m-59 8h43" stroke="#a7a5a2" stroke-width="3" stroke-linecap="round"/>
+                <rect x="180" y="125" width="113" height="38" rx="8" fill="#fff"/>
+                <circle cx="199" cy="144" r="10" fill="#e6eddb"/>
+                <path d="M194 146c2-7 7-9 10-9-1 6-4 9-10 9Zm5 1v5" fill="none" stroke="#759566" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M217 139h59m-59 8h43" stroke="#a7a5a2" stroke-width="3" stroke-linecap="round"/>
+                <circle cx="294" cy="157" r="20" fill="#d7ff70"/>
+                <path d="M286 157a8 8 0 0 1 14-5m0 0v-5m0 5h-5m-3 13a8 8 0 0 1-14-5m0 0v5m0-5h5" fill="none" stroke="#30413b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+            </svg>
+          </div>
+          <div class="project-info">
+            <span class="project-rank">Third place · example</span>
+            <h3>GreenLoop</h3>
+            <p>A campus reuse board prototype for sharing books, lab materials, and other useful student essentials.</p>
+            <span class="team-name">Team: Re:Source · Sample showcase</span>
+          </div>
+        </article>
+      </div>
+      <p class="sample-note">These are fictional sample projects and teams—not confirmed winners of a real event.</p>
+    </section>
+
+    <section class="section register-section" id="register">
+      <div class="register-layout">
+        <div>
+          <div class="section-heading">
+            <p class="kicker">Take the first step</p>
+            <h2>Ready to build something?</h2>
+            <p>Register your interest and tell us a little about yourself and your team.</p>
+          </div>
+          <div class="register-aside">
+            <p><strong>Who can join?</strong><br>Current Northstar College students from any department or year.</p>
+            <p><strong>Team size</strong><br>Register as an individual or with a team of 2–4 students. Solo registrants can find teammates at kickoff.</p>
+            <p><strong>Questions?</strong><br>Contact your college’s hackathon coordinator for event and registration details.</p>
+          </div>
+        </div>
+
+        <form class="register-card" id="registration-form">
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="full-name">Full name</label>
+              <input id="full-name" name="full-name" autocomplete="name" required>
+            </div>
+            <div class="form-field">
+              <label for="student-id">Student ID</label>
+              <input id="student-id" name="student-id" autocomplete="off" required>
+            </div>
+            <div class="form-field">
+              <label for="college-email">College email</label>
+              <input id="college-email" name="email" type="email" autocomplete="email" placeholder="you@northstar.edu" required>
+            </div>
+            <div class="form-field">
+              <label for="department">Department</label>
+              <input id="department" name="department" placeholder="e.g. Computer Science" required>
+            </div>
+            <div class="form-field">
+              <label for="year">Year of study</label>
+              <select id="year" name="year" required>
+                <option value="" selected disabled>Select your year</option>
+                <option>Year 1</option>
+                <option>Year 2</option>
+                <option>Year 3</option>
+                <option>Year 4</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label for="team-name">Team name <span style="font-weight:450">(optional)</span></label>
+              <input id="team-name" name="team-name" placeholder="Decide together later">
+            </div>
+            <div class="form-field full">
+              <label for="track">Preferred challenge track</label>
+              <select id="track" name="track" required>
+                <option value="" selected disabled>Choose a track</option>
+                <option>Student life &amp; wellbeing</option>
+                <option>Learning &amp; accessibility</option>
+                <option>Sustainability on campus</option>
+                <option>Open innovation</option>
+              </select>
+            </div>
+            <div class="form-field full">
+              <label for="idea">What would you like to build? <span style="font-weight:450">(optional)</span></label>
+              <textarea id="idea" name="idea" placeholder="A few words about your idea or the problem you want to solve"></textarea>
+            </div>
+          </div>
+          <label class="consent" for="confirm-student">
+            <input id="confirm-student" name="confirm-student" type="checkbox" required>
+            <span>I confirm that I am a current Northstar College student and agree that the event team may contact me about this demo registration.</span>
+          </label>
+          <button class="button" type="submit">Submit registration <span aria-hidden="true">&nbsp;↗</span></button>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+          <p class="sample-note">Demo form only: submissions are not sent or stored. Connect a secure registration service to collect real entries.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>© 2027 Northstar College · CampusBuild <span class="sample-tag">SAMPLE EVENT</span></span>
+    <span>Made for student ideas. <a href="#top">Back to top ↑</a></span>
+  </footer>
+
+  <script>
+    const registrationForm = document.querySelector("#registration-form");
+    const formStatus = document.querySelector("#form-status");
+
+    registrationForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      formStatus.className = "form-status visible success";
+      formStatus.textContent = "Thanks for your interest! This demo form does not send or store registrations. Connect it to your college’s registration service to collect entries.";
+    });
+
+    registrationForm.addEventListener("input", () => {
+      formStatus.className = "form-status";
+      formStatus.textContent = "";
+    });
+  </script>
+</body>
+</html>
